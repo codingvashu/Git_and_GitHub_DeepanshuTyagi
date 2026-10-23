@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
 <body>
     <main class="container">
         <h1>Student Submission Form</h1>
-        <p>Submit your information to MongoDB Atlas.</p>
+        <p>Submit your information to the local MongoDB database.</p>
 
         {% if error %}
             <div class="error" role="alert">{{ error }}</div>
@@ -26,14 +27,20 @@
                    value="{{ form_data.get('email', '') }}" required>
 
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4"
-                      required>{{ form_data.get('message', '') }}</textarea>
+            <textarea id="message" name="message" rows="4" required>{{ form_data.get('message', '') }}</textarea>
 
             <button type="submit">Submit Data</button>
         </form>
 
-        <p><a href="{{ url_for('api') }}" target="_blank">View JSON API</a></p>
+        <p>
+            <a href="{{ url_for('api') }}" target="_blank">View JSON API</a>
+        </p>
+
+        <section class="todo-link">
+            <h2>To-Do Item</h2>
+            <p>Create an item and generate its ID, UUID, and Hash.</p>
+            <a href="{{ url_for('todo_form') }}">Open To-Do Form</a>
+        </section>
     </main>
 </body>
 </html>
-

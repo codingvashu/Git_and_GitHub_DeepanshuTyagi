@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Item Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <h1>To-Do Item Form</h1>
+
+        {% if error %}
+            <div class="error" role="alert">{{ error }}</div>
+        {% endif %}
+
+        {% if message %}
+            <p role="status">{{ message }}</p>
+        {% endif %}
+
+        <form action="{{ url_for('submit_todo_item') }}" method="POST">
+            <label for="itemName">Item Name</label>
+            <input id="itemName" name="itemName" type="text"
+                   value="{{ item.itemName if item else '' }}" required>
+
+            <label for="itemDescription">Item Description</label>
+            <textarea id="itemDescription" name="itemDescription"
+                      rows="4" required>{{ item.itemDescription if item else '' }}</textarea>
+
+            <label for="itemId">Item ID</label>
+            <input id="itemId" type="text"
+                   value="{{ item.itemId if item else '' }}" readonly>
+
+            <label for="itemUUID">Item UUID</label>
+            <input id="itemUUID" type="text"
+                   value="{{ item.itemUUID if item else '' }}" readonly>
+
+            <label for="itemHash">Item Hash (SHA-256)</label>
+            <input id="itemHash" type="text"
+                   value="{{ item.itemHash if item else '' }}" readonly>
+
+            <button type="submit">Submit To-Do Item</button>
+        </form>
+
+        <p><a href="{{ url_for('home') }}">Back to Student Form</a></p>
+    </main>
+</body>
+</html>
